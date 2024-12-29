@@ -1,0 +1,98 @@
+name: fmcv_transcript
+
+services:
+  records_server_gpu:
+    container_name: ps3_records_server_gpu
+    image: fortunemachinecomputer/fmcv_transcripts:latest
+    restart: always
+    profiles: [gpu]
+    build:
+      context: .
+      target: gpu
+    volumes:
+      - ./data:/app/data
+      - .cache:/root/.cache
+      - ./passcode.txt:/app/passcode.txt
+    env_file:
+      - .env
+    ports:
+      - "1935:1935"
+    hostname: ps3_records_server
+    command: "python3 recording_server_start.py"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ['gpu']
+
+  records_backend_gpu:
+    container_name: ps3_records_backend_gpu
+    image: fortunemachinecomputer/fmcv_transcripts:latest
+    restart: always
+    profiles: [gpu]
+    build:
+      context: .
+      target: gpu
+    volumes:
+      - ./data:/app/data
+      - .cache:/root/.cache
+      - ./passcode.txt:/app/passcode.txt
+    env_file:
+      - .env
+    ports:
+      - "8999:8999"
+    hostname: ps3_records_backend
+    command: "uvicorn recording_backend:app --reload --port 8999 --host 0.0.0.0"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ['gpu']
+
+  records_server_cpu:
+    container_name: ps3_records_server_cpu
+    image: fortunemachinecomputer/fmcv_transcripts_cpu:latest
+    restart: always
+    profiles: [cpu]
+    build:
+      context: .
+      target: cpu
+    volumes:
+      - ./data:/app/data
+      - .cache:/root/.cache
+      - ./passcode.txt:/app/passcode.txt
+    env_file:
+      - .env
+    ports:
+      - "1935:1935"
+    hostname: ps3_records_server
+    command: "python3 recording_server_start.py"
+    
+  records_backend_cpu:
+    container_name: ps3_records_backend_cpu
+    image: fortunemachinecomputer/fmcv_transcripts_cpu:latest
+    restart: always
+    profiles: [cpu]
+    build:
+      context: .
+      target: cpu
+    volumes:
+      - ./data:/app/data
+      - .cache:/root/.cache
+      - ./passcode.txt:/app/passcode.txt
+    env_file:
+      - .env
+    ports:
+      - "8999:8999"
+    hostname: ps3_records_backend
+    command: "uvicorn recording_backend:app --reload --port 8999 --host 0.0.0.0"
+ 
+  nginx:
+    image: nginx:latest
+    restart: always
+    container_name: ps3_records_nginx
+    ports:
+      - "8686:8686"
+    volumes:
+      - ./data:/usr/share/nginx/html/records
+      - ./default.conf:/etc/nginx/conf.d/default.conf
