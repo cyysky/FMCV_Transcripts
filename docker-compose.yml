@@ -6,9 +6,6 @@ services:
     image: fortunemachinecomputer/fmcv_transcripts:latest
     restart: always
     profiles: [gpu]
-    build:
-      context: .
-      target: gpu
     volumes:
       - ./data:/app/data
       - .cache:/root/.cache
@@ -30,9 +27,6 @@ services:
     image: fortunemachinecomputer/fmcv_transcripts:latest
     restart: always
     profiles: [gpu]
-    build:
-      context: .
-      target: gpu
     volumes:
       - ./data:/app/data
       - .cache:/root/.cache
@@ -54,9 +48,6 @@ services:
     image: fortunemachinecomputer/fmcv_transcripts_cpu:latest
     restart: always
     profiles: [cpu]
-    build:
-      context: .
-      target: cpu
     volumes:
       - ./data:/app/data
       - .cache:/root/.cache
@@ -73,9 +64,6 @@ services:
     image: fortunemachinecomputer/fmcv_transcripts_cpu:latest
     restart: always
     profiles: [cpu]
-    build:
-      context: .
-      target: cpu
     volumes:
       - ./data:/app/data
       - .cache:/root/.cache
