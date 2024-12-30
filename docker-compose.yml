@@ -3,7 +3,7 @@ name: fmcv_transcript
 services:
   records_server_gpu:
     container_name: ps3_records_server_gpu
-    image: fortunemachinecomputer/fmcv_transcripts:1.0
+    image: fortunemachinecomputer/fmcv_transcripts:latest
     restart: always
     profiles: [gpu]
     volumes:
@@ -24,7 +24,7 @@ services:
 
   records_backend_gpu:
     container_name: ps3_records_backend_gpu
-    image: fortunemachinecomputer/fmcv_transcripts:1.0
+    image: fortunemachinecomputer/fmcv_transcripts:latest
     restart: always
     profiles: [gpu]
     volumes:
@@ -45,7 +45,7 @@ services:
 
   records_server_cpu:
     container_name: ps3_records_server_cpu
-    image: fortunemachinecomputer/fmcv_transcripts_cpu:1.0
+    image: fortunemachinecomputer/fmcv_transcripts_cpu:latest
     restart: always
     profiles: [cpu]
     volumes:
@@ -61,7 +61,7 @@ services:
     
   records_backend_cpu:
     container_name: ps3_records_backend_cpu
-    image: fortunemachinecomputer/fmcv_transcripts_cpu:1.0
+    image: fortunemachinecomputer/fmcv_transcripts_cpu:latest
     restart: always
     profiles: [cpu]
     volumes:
