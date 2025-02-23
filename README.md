@@ -34,7 +34,7 @@ MAX_PROCESS_TIME_MINUTES = 1
 
 Start the application with GPU support:  
 ```bash
-docker-compose --profile gpu up --build -d
+docker compose --profile gpu up -d
 ```  
 
 ### For CPU (Experimental)  
@@ -42,11 +42,13 @@ Recommended `.env` settings:
 ```env
 MIN_PROCESS_GAP_SECONDS = 30  
 MAX_PROCESS_TIME_MINUTES = 100  
+
+WHISPER_MODEL=openai/openai/whisper-tiny
 ```  
 
 Start the application with CPU support:  
 ```bash
-docker-compose --profile cpu up --build -d
+docker compose --profile cpu up -d
 ```  
 
 ---
