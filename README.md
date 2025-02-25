@@ -20,12 +20,19 @@ If you find this project useful, consider buying me a drink!
 
 3. Download and install Docker Desktop:  
    [Docker Desktop](https://www.docker.com/products/docker-desktop/)  
+  
+  
+4. Install ollama  
+	[Ollama](https://ollama.com/download)  
+	download ollama model  
+	ollama run deepseek-r1:8b-llama-distill-q8_0  
+	ollama run deepseek-r1:1.5b  
 
 ---
 
 ## Configuration  
 
-### For NVIDIA GPU (4GB VRAM or higher)  
+### For NVIDIA GPU (16GB VRAM or higher)  
 Recommended `.env` settings:  
 ```env
 MIN_PROCESS_GAP_SECONDS = 0.5  
@@ -44,6 +51,8 @@ MIN_PROCESS_GAP_SECONDS = 30
 MAX_PROCESS_TIME_MINUTES = 100  
 
 WHISPER_MODEL=openai/openai/whisper-tiny
+OPENAI_MODEL=deepseek-r1:1.5b
+
 ```  
 
 Start the application with CPU support:  
@@ -63,6 +72,7 @@ Access the application at:
 Watch the introduction video for more details:  
 [![YouTube](https://img.shields.io/badge/YouTube-Introduction_Video-red)](https://youtu.be/Md_bWUXAWUw)  
 
+[Introduction Video](https://www.youtube.com/watch?v=83HMr3q_Xz0)
 --- 
 
 Enjoy using **FMCV Transcripts**! 🚀
